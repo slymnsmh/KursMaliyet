@@ -11,7 +11,8 @@
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
       input {
-        font-size: 1vw;
+        font-size: 1.5vw;
+        height: 4vw;
       }
     </style>
   </head>
@@ -23,97 +24,97 @@
       <form action="/" style="justify-content: center; align-items: center;">
         <div style="display: flex; flex-direction: column;">
           <label for="kac_b" style="margin-top: 2%;">B Aday Sayısı</label>
-          <input onchange="update()" type="number" id="kac_b" name="kac_b" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input onchange="update()" type="number" id="kac_b" name="kac_b" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="vali_taban" style="margin-top: 2%;">Vali Taban Fiyatı</label>
-          <input onchange="update()" type="number" step="0.1" id="vali_taban" name="vali_taban" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input onchange="update()" type="number" step="0.1" id="vali_taban" name="vali_taban" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="tabana_ekle" style="margin-top: 2%;">Taban fiyatın üzerine eklenecek tutar</label>
-          <input onchange="update()" type="number" step="0.1" id="tabana_ekle" name="tabana_ekle" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input onchange="update()" type="number" step="0.1" id="tabana_ekle" name="tabana_ekle" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="indirim" style="margin-top: 2%;">İndirim miktarı</label>
-          <input onchange="update()" type="number" step="0.1" id="indirim" name="indirim" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input onchange="update()" type="number" step="0.1" id="indirim" name="indirim" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="b_fiyat" style="margin-top: 2%;">Son haliyle B ehliyet ücreti</label>
-          <input type="number" step="0.1" value="0" id="b_fiyat" name="b_fiyat" disabled value="" required style="margin-top: 1%; height: 2vw; background-color: rgba(250, 250, 0, 0.2);">
+          <input type="number" step="0.1" value="0" id="b_fiyat" name="b_fiyat" disabled value="" required style="margin-top: 1%; background-color: rgba(250, 250, 0, 0.2);">
           
           <label for="toplam_ciro" style="margin-top: 2%;">Toplam Ciro</label>
-          <input type="number" step="0.1" value="0" id="toplam_ciro" name="toplam_ciro" disabled value="" required style="margin-top: 1%; height: 2vw; background-color: rgba(250, 250, 0, 0.2);">
+          <input type="number" step="0.1" value="0" id="toplam_ciro" name="toplam_ciro" disabled value="" required style="margin-top: 1%; background-color: rgba(250, 250, 0, 0.2);">
           
           <label for="saalik_drk_ucret" style="margin-top: 2%;">Saatlik Direksiyon Özel Ders Ücreti</label>
-          <input type="number" step="0.1" id="saalik_drk_ucret" name="saalik_drk_ucret" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="saalik_drk_ucret" name="saalik_drk_ucret" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="bsrz_ders_ucret" style="margin-top: 2%;">Başarısız Özel Ders Ücreti</label>
-          <input type="number" step="0.1" id="bsrz_ders_ucret" name="bsrz_ders_ucret" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="bsrz_ders_ucret" name="bsrz_ders_ucret" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="tazminata_esas_brut" style="margin-top: 2%;">Tazminata Esas Brüt Nedir</label>
-          <input onchange="update()" type="number" step="0.1" id="tazminata_esas_brut" name="tazminata_esas_brut" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input onchange="update()" type="number" step="0.1" id="tazminata_esas_brut" name="tazminata_esas_brut" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="asgari_ucret_tazminat_maliyet" style="margin-top: 2%;">Asgari Ücretli Kişinin Tazminat Maliyeti</label>
-          <input disabled type="number" step="0.1" value="0" id="asgari_ucret_tazminat_maliyet" name="asgari_ucret_tazminat_maliyet" required style="margin-top: 1%; height: 2vw;">
+          <input disabled type="number" step="0.1" value="0" id="asgari_ucret_tazminat_maliyet" name="asgari_ucret_tazminat_maliyet" required style="margin-top: 1%;">
           
           <label for="sgk_haric_brut" style="margin-top: 2%;">SGK Hariç Brüt</label>
-          <input onchange="update()" type="number" step="0.1" id="sgk_haric_brut" name="sgk_haric_brut" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input onchange="update()" type="number" step="0.1" id="sgk_haric_brut" name="sgk_haric_brut" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="asgari_ucretli_sgk_vs_maliyet" style="margin-top: 2%;">Asgari Ücretlinin SGK vs. maliyeti</label>
-          <input onchange="update()" type="number" step="0.1" id="asgari_ucretli_sgk_vs_maliyet" name="asgari_ucretli_sgk_vs_maliyet" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input onchange="update()" type="number" step="0.1" id="asgari_ucretli_sgk_vs_maliyet" name="asgari_ucretli_sgk_vs_maliyet" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="sgk_dahil_maliyet" style="margin-top: 2%;">SGK dahil maliyet</label>
-          <input type="number" step="0.1" value="0" id="sgk_dahil_maliyet" name="sgk_dahil_maliyet" disabled required style="margin-top: 1%; height: 2vw; background-color: rgba(250, 250, 0, 0.2);">
+          <input type="number" step="0.1" value="0" id="sgk_dahil_maliyet" name="sgk_dahil_maliyet" disabled required style="margin-top: 1%; background-color: rgba(250, 250, 0, 0.2);">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <label for="" style="margin-top: 2%;"></label>
-          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%; height: 2vw;">
+          <input type="number" step="0.1" id="" name="" placeholder="Bir değer giriniz..." required style="margin-top: 1%;">
           
           <button type="submit" href="/" style="margin-top: 2%; height: 3vw;">Submit</button>
         </div>
