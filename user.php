@@ -7,8 +7,6 @@ if (empty($_SESSION['user_id'])) {
 	exit();
 }
 
-$info = "";
-
 if (isset($_GET['logout'])) {
 	session_destroy();
 	Header("Location: index.php");
@@ -25,7 +23,7 @@ if (isset($_GET['logout'])) {
 	<body>
 		<div class="container">
 			<h1>Maliyet Hesaplama Programı</h1>
-			<form method="post" action="user.php">
+			<form method="post" action="result.php">
 				<div style="width: 50%; float: left; padding: 0 2% 0 2%;">
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="kac_b">B Aday Sayısı</label>
 					<input style="width: 60%; float: left;" type="number" step="0.1" name="kac_b" id="kac_b" required>
@@ -69,6 +67,9 @@ if (isset($_GET['logout'])) {
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="her_b_kac_saat_drk">B adayı direksiyon çalışma saati</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="her_b_kac_saat_drk" id="her_b_kac_saat_drk" required>
 
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="aday_drk_derse_gelme_orani">B adayının direksiyon dersine katılma oranı</label>
+					<input style="width: 60%; float: left;" type="number" step="0.01" max="1" min="0" name="aday_drk_derse_gelme_orani" id="aday_drk_derse_gelme_orani" required>
+
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="kisi_basi_yemek_gideri">Kişi başı yemek gideri</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="kisi_basi_yemek_gideri" id="kisi_basi_yemek_gideri" required>
 
@@ -88,7 +89,7 @@ if (isset($_GET['logout'])) {
 					<input style="width: 60%; float: left;" type="number" step="1" name="ilkyardimci_toplam_ucret" id="ilkyardimci_toplam_ucret" required>
 
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="cayci_vs_sayisi">Çaycı, temizlikçi vs. sayısı</label>
-					<input style="width: 60%; float: left;" type="number" step="1" name="cayci_vs_sayisi" id="cayci_vs_sayisi" required>
+					<input style="width: 60%; float: left;" type="number" step="1" min="0" name="cayci_vs_sayisi" id="cayci_vs_sayisi" required>
 
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="mudur_farki">Müdürün diğer asgari ücretlilerden farkı</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="mudur_farki" id="mudur_farki" required>
@@ -98,9 +99,7 @@ if (isset($_GET['logout'])) {
 
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="pist_kirasi">Pist kirası</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="pist_kirasi" id="pist_kirasi" required>
-				</div>
 				
-				<div style="width: 50%; float: right; padding: 0 2% 0 2%;">
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="bina_kirasi">Bina kirası</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="bina_kirasi" id="bina_kirasi" required>
 
@@ -118,7 +117,9 @@ if (isset($_GET['logout'])) {
 
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="gsm_gideri">GSM gideri</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="gsm_gideri" id="gsm_gideri" required>
-
+				</div>
+				
+				<div style="width: 50%; float: right; padding: 0 2% 0 2%;">
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="adsl_gideri">ADSL gideri</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="adsl_gideri" id="adsl_gideri" required>
 
@@ -134,8 +135,8 @@ if (isset($_GET['logout'])) {
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="otopark_gideri">Otopark gideri</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="otopark_gideri" id="otopark_gideri" required>
 
-					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="trk_ceza_aylik_ort">Aylık ortalama trafik cezası bedeli</label>
-					<input style="width: 60%; float: left;" type="number" step="1" name="trk_ceza_aylik_ort" id="trk_ceza_aylik_ort" required>
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="trf_ceza_aylik_ort">Aylık ortalama trafik cezası bedeli</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="trf_ceza_aylik_ort" id="trf_ceza_aylik_ort" required>
 					
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="e_sinav_yillik_aidat">E Sınav sistem için yıllık aidat</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="e_sinav_yillik_aidat" id="e_sinav_yillik_aidat" required>
@@ -155,8 +156,8 @@ if (isset($_GET['logout'])) {
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="damacana_su_fiyati">Damacana Su Birim Fiyatı</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="damacana_su_fiyati" id="damacana_su_fiyati" required>
 
-					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="muhasebeci_aidat">Ayda kaç damacana su içiliyor</label>
-					<input style="width: 60%; float: left;" type="number" step="1" name="muhasebeci_aidat" id="muhasebeci_aidat" required>
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="ayda_kac_damacana">Ayda kaç damacana su içiliyor</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="ayda_kac_damacana" id="ayda_kac_damacana" required>
 
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="yaz_aylari_dogalgaz">Yaz ayları doğalgaz gideri</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="yaz_aylari_dogalgaz" id="yaz_aylari_dogalgaz" required>
@@ -169,9 +170,57 @@ if (isset($_GET['logout'])) {
 
 					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="aylik_muhtelif_gider">Aylık muhtelif giderler</label>
 					<input style="width: 60%; float: left;" type="number" step="1" name="aylik_muhtelif_gider" id="aylik_muhtelif_gider" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="yillik_kurum_harci">Yıllık kurum harcı</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="yillik_kurum_harci" id="yillik_kurum_harci" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="adayin_sinav_icin_verilen_hizmet_saati">Her adaya sınav için verilen hizmet süresi</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="adayin_sinav_icin_verilen_hizmet_saati" id="adayin_sinav_icin_verilen_hizmet_saati" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="b_saate_kac_km">B adayı saatte kaç km yol yapar</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="b_saate_kac_km" id="b_saate_kac_km" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="bir_oto_kmde_kac_tl">Bir otomobil km'de kaç TL yakar</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="bir_oto_kmde_kac_tl" id="bir_oto_kmde_kac_tl" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="oto_yillik_fenni_ve_egsoz">Otomobil yıllık fenni ve egsoz muayenesi</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="oto_yillik_fenni_ve_egsoz" id="oto_yillik_fenni_ve_egsoz" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="oto_yillik_mtv">Otomobil yıllık MTV</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="oto_yillik_mtv" id="oto_yillik_mtv" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="oto_aylik_bakim_vs_gideri">Bir otomobil aylık bakım arıza yedek parça vs gideri</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="oto_aylik_bakim_vs_gideri" id="oto_aylik_bakim_vs_gideri" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="oto_yillik_trf_sig_gideri">Bir otomobil yıllık trafik sigortası gideri</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="oto_yillik_trf_sig_gideri" id="oto_yillik_trf_sig_gideri" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="oto_yillik_kasko">Bir otomobil yıllık kasko gideri</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="oto_yillik_kasko" id="oto_yillik_kasko" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="ort_oto_su_anki_fiyat">Bir otomobilin şu anki ortalama fiyatı</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="ort_oto_su_anki_fiyat" id="ort_oto_su_anki_fiyat" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="oto_aldiktan_kac_yil_sonra_sifir">Otomobili aldıktan kaç yıl sonra değeri 0 kabul edilse</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="oto_aldiktan_kac_yil_sonra_sifir" id="oto_aldiktan_kac_yil_sonra_sifir" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="bsrz_aday_orani">Başarısız aday oranı yüzde kaç</label>
+					<input style="width: 60%; float: left;" type="number" step="0.1" name="bsrz_aday_orani" id="bsrz_aday_orani" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="keyfi_ozel_ders_alan_orani">Adayların yüzde kaçı keyfi özel ders alıyor</label>
+					<input style="width: 60%; float: left;" type="number" step="0.1" name="keyfi_ozel_ders_alan_orani" id="keyfi_ozel_ders_alan_orani" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="keyfi_ozel_ders_alan_ort_saat_sayisi">Keyfi özel ders alanlar ortalama kaç saat ek ders alır</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="keyfi_ozel_ders_alan_ort_saat_sayisi" id="keyfi_ozel_ders_alan_ort_saat_sayisi" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="aylik_b_disi_orani">Aylık B aday sayısının yüzde kaçı B dışı ehliyet</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="aylik_b_disi_orani" id="aylik_b_disi_orani" required>
+
+					<label style="width: 40%; float: left; padding-left: 2%; padding-right: 2%;" for="b_disi_aday_ilave_kar_katkisi">B dışı adaylardan kişi başı ilave kar</label>
+					<input style="width: 60%; float: left;" type="number" step="1" name="b_disi_aday_ilave_kar_katkisi" id="b_disi_aday_ilave_kar_katkisi" required>
 				</div>
 
-				<input class="submit-btn" type="submit" name="save" id="save" value="Kaydet">
+				<input class="submit-btn" type="submit" name="calculate" id="calculate" value="Hesapla">
 				<input class="logout-btn" onclick="window.location.replace('user.php?logout=true')" name="logout" value="Çıkış Yap">
 			</form>
 		</div>
