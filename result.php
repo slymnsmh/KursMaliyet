@@ -1,11 +1,11 @@
 <?php
 
-session_start();
+/*session_start();
 
 if (empty($_SESSION['user_id'])) {
 	header("location: index.php?from=userPage");
 	exit();
-}
+}*/
 
 $info = "";
 
@@ -125,10 +125,10 @@ if (isset($_POST['calculate'])) {
 	$top_vergi = $vergi_on_kabulu <= 0 ? 0 : $vergi_on_kabulu;
 }
 
-if (isset($_GET['logout'])) {
+/*if (isset($_GET['logout'])) {
 	session_destroy();
 	Header("Location: index.php");
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html>
